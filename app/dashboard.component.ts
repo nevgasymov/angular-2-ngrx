@@ -1,7 +1,7 @@
-// Keep the Input import for now, we'll remove it later:
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
-import { Location }                 from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+
+import { Hero } from './hero';
+import { HeroService } from './hero.service';
 
 import { HeroService } from './hero.service';
 
@@ -10,4 +10,18 @@ import { HeroService } from './hero.service';
     selector: 'my-dashboard',
     templateUrl: 'dashboard.component.html',
 })
-export class DashboardComponent { }
+export class DashboardComponent implements OnInit {
+
+    heroes: Hero[] = [];
+
+    constructor(private heroService: HeroService) { }
+
+    ngOnInit(): void {
+        this.heroService.getHeroes()
+            .then(heroes => this.heroes = heroes.slice(1, 5));
+    }
+
+    gotoDetail(hero: Hero): void { /* not implemented yet */}
+}
+
+
