@@ -1,8 +1,8 @@
-// Keep the Input import for now, we'll remove it later:
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
-import { Location }                 from '@angular/common';
+import { Component, OnInit }      from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location }               from '@angular/common';
 
+import { Hero }        from './hero';
 import { HeroService } from './hero.service';
 
 @Component({
@@ -12,6 +12,7 @@ import { HeroService } from './hero.service';
     styleUrls: [ 'hero-detail.component.css' ]
 })
 export class HeroDetailComponent implements OnInit {
+    hero: Hero;
 
     constructor(
         private heroService: HeroService,
@@ -25,6 +26,11 @@ export class HeroDetailComponent implements OnInit {
             this.heroService.getHero(id)
                 .then(hero => this.hero = hero);
         });
+    }
+
+    save(): void {
+        this.heroService.update(this.hero)
+            .then(() => this.goBack());
     }
 
     goBack(): void {
