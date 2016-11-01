@@ -1,10 +1,9 @@
-// Keep the Input import for now, we'll remove it later:
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
-import { Location }                 from '@angular/common';
+import { Component, OnInit }      from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location }               from '@angular/common';
 
-import { HeroService } from './hero.service';
-
+import { Hero }         from './hero';
+import { HeroService }  from './hero.service';
 @Component({
     moduleId: module.id,
     selector: 'my-hero-detail',
@@ -12,6 +11,7 @@ import { HeroService } from './hero.service';
     styleUrls: [ 'hero-detail.component.css' ]
 })
 export class HeroDetailComponent implements OnInit {
+    hero: Hero;
 
     constructor(
         private heroService: HeroService,
