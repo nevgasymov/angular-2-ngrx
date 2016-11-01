@@ -17,7 +17,7 @@ export class HeroService {
             .then(response => response.json().data as Hero[])
             .catch(this.handleError);
     }
-    
+
     getHero(id: number): Promise<Hero> {
         return this.getHeroes()
             .then(heroes => heroes.find(hero => hero.id === id));
